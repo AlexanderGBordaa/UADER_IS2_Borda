@@ -6,21 +6,26 @@
 #* Creative commons                                                        *
 #*-------------------------------------------------------------------------*
 import sys
+import math
 
-def factorial(n):
-    if n == 0:
-        return 1
-    else:
-        return n * factorial(n-1)
+# Función para calcular el factorial de un número
+def calcular_factorial(n):
+    return math.factorial(n)
 
-if __name__ == "__main__":
-    # Verifica si se pasó un argumento
-    if len(sys.argv) > 1:
-        try:
-            num = int(sys.argv[1])
-            print(f"El factorial de {num} es: {factorial(num)}")
-        except ValueError:
-            print("Por favor ingrese un número válido.")
-    else:
-        num = int(input("Ingrese un número: "))
-        print(f"El factorial de {num} es: {factorial(num)}")
+# Función para manejar el rango de números
+def calcular_factoriales_desde_hasta(rango):
+    inicio, fin = map(int, rango.split('-'))
+    if inicio > fin:
+        print("El valor de 'inicio' debe ser menor o igual a 'fin'.")
+        return
+    for num in range(inicio, fin + 1):
+        print(f"El factorial de {num} es: {calcular_factorial(num)}")
+
+# Verificar si se proporcionó el rango como argumento
+if len(sys.argv) > 1:
+    rango = sys.argv[1]
+else:
+    rango = input("Por favor, ingrese el rango (ej. 4-8): ")
+
+# Llamamos a la función para calcular los factoriales
+calcular_factoriales_desde_hasta(rango)
